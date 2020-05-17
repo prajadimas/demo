@@ -30,25 +30,28 @@
 		<!-- Socket IO -->
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			var socket = io('https://4ds.ngrancang.id');
+			var socket = io.connect('https://4ds.ngrancang.id');
+			socket.on("sentLog", function (data) {
+				console.log("log: ", data)
+			})
 			if (annyang) {
 				// Add our commands to annyang
 			 	annyang.setLanguage('id');
 			 	annyang.addCommands({
-					'halo': function() { 
+					'halo': function () { 
 						alert('Hello world!'); 
 				  	}
 			 	});
 				annyang.addCommands({
-					'nyalakan lampu': function() { 
+					'nyalakan lampu': function () { 
 						alert('lampu dinyalakan!');
-						socket.broadcast.emit('lamp', '1'); 
+						socket.emit('lamp', '1'); 
 				  	}
 			 	});
 				annyang.addCommands({
-					'matikan lampu': function() { 
+					'matikan lampu': function () { 
 						alert('lampu dimatikan!'); 
-						socket.broadcast.emit('lamp', '0'); 
+						socket.emit('lamp', '0'); 
 				  	}
 			 	});
 				// Start listening, don't restart automatically, stop recognition after first phrase recognized

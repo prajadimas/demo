@@ -34,10 +34,15 @@ app.get('/', function (req,res) {
 io.on('connection', function (socket) {
 	console.log('user connected')
   	socket.on('lamp', function (data) {
-		console.log('data: ', data)	
+		console.log('data: ', data)
+		io.emit('lampStat', data)	
     		socket.broadcast.emit('sentLog', 'lamp ' + data)
   	})
- 	socket.on('onLog', function (data) {
+
+ 	/*
+	 *
+
+	socket.on('onLog', function (data) {
     		console.log('log: ', data)
     		socket.broadcast.emit('sentLog', data)
   	})
@@ -45,6 +50,10 @@ io.on('connection', function (socket) {
     		console.log('error: ', data)
     		socket.broadcast.emit('sentErr', data)
   	})
+
+	 *
+	 */
+
 })
 
 // ====================== SERVER STARTER ======================== //
