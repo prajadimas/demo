@@ -28,8 +28,8 @@ app.use(express.static(path.join(__dirname,'public')))
 app.get('/', function (req,res) {
   	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   	console.log('accessing [API]: ', req.method + ' ' + req.originalUrl || req.url, 'CLIENT ACCESS from', ip)
-	res.sendFile(__dirname + '/public/index_annyang.html')
-	// res.sendFile(__dirname + '/public/test.html')
+	// res.sendFile(__dirname + '/public/index_annyang.html')
+	res.sendFile(__dirname + '/public/demo.html')
 })
 
 // ====================== SERVER STARTER ======================== //
