@@ -6,10 +6,10 @@
 // Packages needed
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
+const https = require('https')
+
 var app = express()
-var http = require('http').createServer(app)
-var io = require('socket.io')(http)
-require('dotenv').config()
 
 // setting up port used
 // const port = process.env.PORT || 80
@@ -28,30 +28,20 @@ app.use(express.static(path.join(__dirname,'public')))
 app.get('/', function (req,res) {
   	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   	console.log('accessing [API]: ', req.method + ' ' + req.originalUrl || req.url, 'CLIENT ACCESS from', ip)
+	// res.sendFile(__dirname + '/public/index_annyang.html')
 	res.sendFile(__dirname + '/public/demo.html')
-})
-
-io.on('connection', function (socket) {
-	console.log('user connected')
-  	socket.on('lamp', function (data) {
-		console.log('data: ', data)	
-    		socket.broadcast.emit('sentLog', 'lamp ' + data)
-  	})
- 	socket.on('onLog', function (data) {
-    		console.log('log: ', data)
-    		socket.broadcast.emit('sentLog', data)
-  	})
-  	socket.on('onErr', function (data) {
-    		console.log('error: ', data)
-    		socket.broadcast.emit('sentErr', data)
-  	})
 })
 
 // ====================== SERVER STARTER ======================== //
 // ============================================================== //
 
 // listening server
-http.listen(port, '0.0.0.0', () => {
+https.createServer({
+	key: fs.readFileSync('server.key'),
+  	cert: fs.readFileSync('server.cert')
+}, app)
+.listen(port, '0.0.0.0', () => {
+// app.listen(port, '0.0.0.0', () => {
 	console.log(`Demo has started on port ${port}`)
 })
 
