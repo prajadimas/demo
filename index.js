@@ -36,24 +36,16 @@ io.on('connection', function (socket) {
   	socket.on('lamp', function (data) {
 		console.log('data: ', data)
 		io.emit('lampStat', data)	
-    		socket.broadcast.emit('sentLog', 'lamp ' + data)
+    		io.emit('sentLog', 'lamp ' + data)
   	})
-
- 	/*
-	 *
-
 	socket.on('onLog', function (data) {
     		console.log('log: ', data)
-    		socket.broadcast.emit('sentLog', data)
+    		io.emit('sentLog', data)
   	})
   	socket.on('onErr', function (data) {
     		console.log('error: ', data)
-    		socket.broadcast.emit('sentErr', data)
+    		io.emit('sentErr', data)
   	})
-
-	 *
-	 */
-
 })
 
 // ====================== SERVER STARTER ======================== //

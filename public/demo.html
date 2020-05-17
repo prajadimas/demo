@@ -30,11 +30,11 @@
 		<!-- Socket IO -->
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			var socket = io.connect('https://4ds.ngrancang.id');
-			socket.on("sentLog", function (data) {
-				console.log("log: ", data)
-			})
 			if (annyang) {
+				var socket = io.connect('https://4ds.ngrancang.id');
+				socket.on("sentLog", function (data) {
+					console.log("log: ", data)
+				})
 				// Add our commands to annyang
 			 	annyang.setLanguage('id');
 			 	annyang.addCommands({
