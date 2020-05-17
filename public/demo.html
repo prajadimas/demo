@@ -41,12 +41,14 @@
 			 	});
 				annyang.addCommands({
 					'nyalakan lampu': function() { 
-						alert('lampu dinyalakan!'); 
+						alert('lampu dinyalakan!');
+						socket.broadcast.emit('lamp', '1'); 
 				  	}
 			 	});
 				annyang.addCommands({
 					'matikan lampu': function() { 
 						alert('lampu dimatikan!'); 
+						socket.broadcast.emit('lamp', '0'); 
 				  	}
 			 	});
 				// Start listening, don't restart automatically, stop recognition after first phrase recognized
