@@ -30,11 +30,12 @@
 		<!-- Socket IO -->
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
+			// var socket = io.connect('https://4ds.ngrancang.id');
+			var socket = io(https://4ds.ngrancang.id);
+			socket.on("sentLog", function (data) {
+				console.log("log: ", data.msg)
+			})
 			if (annyang) {
-				var socket = io.connect('https://4ds.ngrancang.id');
-				socket.on("sentLog", function (data) {
-					console.log("log: ", data)
-				})
 				// Add our commands to annyang
 			 	annyang.setLanguage('id');
 			 	annyang.addCommands({
@@ -45,13 +46,13 @@
 				annyang.addCommands({
 					'nyalakan lampu': function () { 
 						alert('lampu dinyalakan!');
-						socket.emit('lamp', '1'); 
+						socket.emit('lamp', { stat: '1' }); 
 				  	}
 			 	});
 				annyang.addCommands({
 					'matikan lampu': function () { 
 						alert('lampu dimatikan!'); 
-						socket.emit('lamp', '0'); 
+						socket.emit('lamp', { stat: '0' }); 
 				  	}
 			 	});
 				// Start listening, don't restart automatically, stop recognition after first phrase recognized

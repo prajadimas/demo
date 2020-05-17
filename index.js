@@ -35,16 +35,16 @@ io.on('connection', function (socket) {
 	console.log('user connected')
   	socket.on('lamp', function (data) {
 		console.log('data: ', data)
-		io.emit('lampStat', data)	
-    		io.emit('sentLog', 'lamp ' + data)
+		io.emit('lampStat', { stat: data.stat })	
+    		io.emit('sentLog', { msg: 'lamp ' + data.stat })
   	})
 	socket.on('onLog', function (data) {
     		console.log('log: ', data)
-    		io.emit('sentLog', data)
+    		io.emit('sentLog', { msg: data.msg })
   	})
   	socket.on('onErr', function (data) {
     		console.log('error: ', data)
-    		io.emit('sentErr', data)
+    		io.emit('sentErr', { msg: data.msg })
   	})
 })
 
