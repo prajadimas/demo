@@ -36,7 +36,7 @@
 
         // Let's define a command.
         var commands = {
-            'hello': function() { console.log('Hello world!'); }
+            'hello': function() { alert('Hello world!'); }
         };
 
         // Add our commands to annyang
@@ -50,7 +50,7 @@
 
         // Add instructional texts
         SpeechKITT.setInstructionsText('Some commands to try…');
-        SpeechKITT.setSampleCommands(['Show directions', 'Call restaurant']);
+        // SpeechKITT.setSampleCommands(['Show directions', 'Call restaurant']);
 
         // If user clicks start button, remember his choice for 1 minute
         SpeechKITT.rememberStatus(1);
