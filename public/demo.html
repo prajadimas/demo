@@ -45,13 +45,13 @@
 			 	});
 				annyang.addCommands({
 					'nyalakan lampu': function () { 
-						alert('lampu dinyalakan!');
+						// alert('lampu dinyalakan!');
 						socket.emit('lamp', { stat: '1' }); 
 				  	}
 			 	});
 				annyang.addCommands({
 					'matikan lampu': function () { 
-						alert('lampu dimatikan!'); 
+						// alert('lampu dimatikan!'); 
 						socket.emit('lamp', { stat: '0' }); 
 				  	}
 			 	});
