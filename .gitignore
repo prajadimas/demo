@@ -152,8 +152,3 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 .build/
-dockersetting.sh
-uploads/*.json
-tryMod.js
-server.key
-server.cert
